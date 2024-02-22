@@ -80,6 +80,15 @@ main>div{
     color: var(--color1);
 }
 
-/* .actual{
-
-} */
+.theEnd{
+    text-align: center;
+    display: none;
+    background-color: #ebebebc2;
+    position: fixed;
+    font-size: xx-large;
+    font-weight: bold;
+    padding: 45px;
+    border-radius: 10px;
+    top: 250px;
+    left: 590px;
+}

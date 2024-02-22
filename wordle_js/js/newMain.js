@@ -39,6 +39,8 @@ const wordle = (function () {
         "yogur",  "zafar",  "zorro",  "termo",  "negro",  "rosas",  "cinco",  "siete",  "nueve",  "trece"
     ];
 
+    const palabraGanadora = () => {return objetivo;}
+
     const comprobar = function (string) {
         if (string.length !== 5) {
             console.log("Palabra no válida");
@@ -85,7 +87,6 @@ const wordle = (function () {
         `);
 
         objetivo = escogerPalabra(palabrasEspañol).toUpperCase();
-        mostrar();
     }
 
     const mostrar = function () {
@@ -97,7 +98,8 @@ const wordle = (function () {
     return {
         init : init,
         mostrar : mostrar,
-        comprobar : comprobar
+        comprobar : comprobar,
+        palabra: palabraGanadora
 
     };
     
@@ -129,6 +131,9 @@ const wordle = (function () {
                     key.className = (key.textContent === "W") ? `key wKey none` : `key none`;
                 }
             });
+            const victory = document.querySelector(".theEnd");
+            victory.innerHTML = `¡EUREKA!<br/>La palabra era ${wordle.palabra()}`;
+            victory.style.display = "block";
             // console.log("¡HAS GANADO");
             document.querySelector(".keyboard").removeEventListener("click", clickLetra);
             document.removeEventListener("keydown", letraPresionada);
@@ -138,6 +143,9 @@ const wordle = (function () {
                     key.className = (key.textContent === "W") ? `key wKey none` : `key none`;
                 }
             });
+            const victory = document.querySelector(".theEnd");
+            victory.innerHTML = `¡MUY MAL!<br/>La palabra era ${wordle.palabra()}`;
+            victory.style.display = "block";
             // console.log("¡HAS PERDIDO!");
             document.querySelector(".keyboard").removeEventListener("click", clickLetra);
             document.removeEventListener("keydown", letraPresionada);
@@ -304,6 +312,9 @@ const wordle = (function () {
         header.appendChild(title);
         header.appendChild(title2);
         body.appendChild(header);
+        const victory = document.createElement("div");
+        victory.classList.add("theEnd");
+        body.appendChild(victory);
 
         //---Creación del main---
         const main = document.createElement("main");
