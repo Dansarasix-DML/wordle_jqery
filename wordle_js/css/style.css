@@ -1,0 +1,85 @@
+:root{
+    --color1: #fff;
+    --color2: #e7f4ff;
+    --color3: darkgrey;
+    --color4: rgb(203 203 203 / 74%);
+    --color5: #98b4cb;
+}
+
+*{
+    font-family: "Nunito", sans-serif;
+}
+
+header{text-align: center;}
+
+main>div{
+    display: flex;
+    justify-content: center;
+}
+
+.wordBody{
+    width: 450px;
+    height: 475px;
+}
+
+.wordBody>div{
+    margin: 3% 0%;
+    display: flex;
+    gap: 3%;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.wordBody>div>div{
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 45px;
+    font-weight: bolder;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 3px var(--color4);
+
+}
+
+.keyboard>div{
+    display: flex;
+    justify-content: center;
+}
+
+.wKey{
+    padding: 15px 11px !important;
+}
+
+.keyboard>div>div{
+    text-align: center;
+    font-weight: bold;
+    flex: 1 1 2%;
+    padding: 15px;
+    margin: 5px;
+    background-color: var(--color2);
+    border-radius: 5px;
+    box-shadow: 0 0 1px 2px var(--color3);
+    transition-duration: 0.25s;
+}
+
+.keyboard>div>div:hover{
+    cursor: pointer;
+    background-color: var(--color5);
+}
+
+.green{
+    background-color: green !important;
+    color: var(--color1) !important;
+}
+.yellow{
+    background-color: gold !important;
+    color: var(--color1) !important;
+}
+.none{
+    background-color: grey !important;
+    color: var(--color1);
+}
+
+/* .actual{
+
+} */
