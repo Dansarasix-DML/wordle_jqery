@@ -118,7 +118,6 @@ const wordle = (function () {
         // document.querySelector("[data-flag] [data-letter]:empty");
         const cell = document.querySelector(".actual [data-letter]:empty");
         if (cell) {
-            cell.focus();
             cell.setAttribute("data-letter", letra);
             cell.textContent = letra;
         }
@@ -172,8 +171,11 @@ const wordle = (function () {
                     if (color === "green") {
                         key.className = (key.textContent === "W") ? `key wKey green` : "key green";
                     } else if (!key.className.includes("green")) {
-                        const val = (color === "none") ? "none" : "yellow";
-                        key.className = (key.textContent === "W") ? `key wKey ${val}` : `key ${val}`;
+                        if ((color === "yellow")) {
+                            key.className = (key.textContent === "W") ? `key wKey yellow` : `key yellow`;
+                        } else if (!key.className.includes("yellow")) {
+                            key.className = (key.textContent === "W") ? `key wKey none` : `key none`;
+                        }
                     }
                 }
             });
@@ -184,34 +186,12 @@ const wordle = (function () {
 
     const borrarLetra = function () {
         if (document.querySelector(".actual [data-letter]:empty") && document.querySelector(".actual [data-letter]:empty").previousElementSibling) {
-            document.querySelector(".actual [data-letter]:empty").previousElementSibling.focus();
             document.querySelector(".actual [data-letter]:empty").previousElementSibling.setAttribute("data-letter", "");
             document.querySelector(".actual [data-letter]:empty").previousElementSibling.textContent = "";
         } else {
-            document.querySelector(".actual").lastChild.focus();
             document.querySelector(".actual").lastChild.setAttribute("data-letter", "");
             document.querySelector(".actual").lastChild.textContent = "";
         }
-
-        // const filas = [...document.querySelectorAll(".letter-row")];
-        // const fila = filas.find(fila => fila.getAttribute("data-flag") === "0");
-    
-        // if (fila) {
-        //     const cells = [...fila.querySelectorAll(".letter-box")];
-        
-        //     const lastFilledCellIndex = cells.reduceRight((lastIndex, cell, currentIndex) => {
-        //         if (lastIndex === -1 && cell.getAttribute("data-letter")) {
-        //             return currentIndex;
-        //         }
-        //         return lastIndex;
-        //     }, -1);
-            
-        //     if (lastFilledCellIndex !== -1) {
-        //         const lastFilledCell = cells[lastFilledCellIndex];
-        //         lastFilledCell.setAttribute("data-letter", "");
-        //         lastFilledCell.textContent = "";
-        //     } 
-        // }
     }
 
     const teclasAccion = function (tecla) {
@@ -235,18 +215,14 @@ const wordle = (function () {
         if (teclas.includes(event.target.textContent) && !banTeclas.includes(event.target.textContent)) {
             // console.log(event.target.textContent);
             ponerLetra(event.target.textContent);
-        } else if (banTeclas.includes(event.target.textContent)) {
-            teclasAccion(event.target.textContent);
-        }
+        } else if (banTeclas.includes(event.target.textContent)) teclasAccion(event.target.textContent);
     }
 
     const letraPresionada = function (event) {
         if (teclas.includes(event.key.toUpperCase()) && !banTeclas.includes(event.target.textContent)) {
             // console.log(event.key.toUpperCase());
             ponerLetra(event.key.toUpperCase());
-        } else if (banTeclas.includes(event.key.toUpperCase())) {
-            teclasAccion(event.key.toUpperCase());
-        }
+        } else if (banTeclas.includes(event.key.toUpperCase())) teclasAccion(event.key.toUpperCase());
     }
 
     const drawWordle = function() {
