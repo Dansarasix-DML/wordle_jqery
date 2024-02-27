@@ -203,18 +203,22 @@ const wordle = (function () {
             // console.log(result);
 
             $cells.each(function (i) {
-                $(this).removeClass().addClass(`letter-box ${result[i]}`);
+                $(this).fadeOut(function () {
+                    $(this).removeClass()
+                        .addClass(`letter-box ${result[i]}`) // Cambia de color antes de desvanecerse
+                        .fadeIn(); // Aparece la casilla con el nuevo color
+                });
                 const key = $keys.filter(function() {
                     return $(this).text() === $($cells[i]).text();
                 }).first();
                 if (key.length) {
                     if (result[i] === "green") {
-                        key.removeClass().addClass("key green");
-                    } else if (!key.hasClass("green")) {
+                        key.removeClass().addClass("key keyGreen");
+                    } else if (!key.hasClass("keyGreen")) {
                         if (result[i] === "yellow") {
-                            key.removeClass().addClass("key yellow");
-                        } else if (!key.hasClass("yellow")) {
-                            key.removeClass().addClass("key none");
+                            key.removeClass().addClass("key keyYellow");
+                        } else if (!key.hasClass("keyYellow")) {
+                            key.removeClass().addClass("key keyNone");
                         }
                     }
                 }
