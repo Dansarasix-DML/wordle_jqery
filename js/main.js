@@ -130,7 +130,7 @@ const wordle = (function () {
     }
 
     const ponerLetra = function (letra) {
-        $cell = $(".actual [data-letter]:empty").first();
+        const $cell = $(".actual [data-letter]:empty").first();
         if ($cell.length) {
             $cell.attr("data-letter", letra);
             $cell.text(letra);
@@ -138,7 +138,7 @@ const wordle = (function () {
     }
 
     const comprobarJugada = function (result, $keys) {
-        $victory = $(".theEnd");
+        const $victory = $(".theEnd");
 
         if (result.every(color => color === "green")) {
             $keys.each(function () {
@@ -189,8 +189,8 @@ const wordle = (function () {
     }
 
     const comprobarPalabra = function () {
-        $cells = $(".actual [data-letter]");
-        $keys = $(".key");
+        const $cells = $(".actual [data-letter]");
+        const $keys = $(".key");
         const intento = [];
 
         if ($cells.toArray().every(cell => !!$(cell).attr("data-letter"))) {
@@ -231,7 +231,7 @@ const wordle = (function () {
     }
 
     const borrarLetra = function() {
-        $emptyCell = $(".actual [data-letter]:empty");
+        const $emptyCell = $(".actual [data-letter]:empty");
         if ($emptyCell.length && $emptyCell.prev().length) {
             $emptyCell.prev().attr("data-letter", "");
             $emptyCell.prev().text("");
@@ -276,9 +276,9 @@ const wordle = (function () {
     }
 
     const header = function () {
-        $noscript = $("<noscript>USA JAVASCRIPT</noscript>");
-        $header = $("<header></header>");
-        $audios = $(`
+        const $noscript = $("<noscript>USA JAVASCRIPT</noscript>");
+        const $header = $("<header></header>");
+        const $audios = $(`
         <div>
             <audio class="audio1" src="./sound/playtime.mp3" preload="auto"></audio>
             <audio class="audio2" src="./sound/intro.mp3" preload="auto"></audio>
@@ -288,13 +288,13 @@ const wordle = (function () {
             <audio class="audio6" src="./sound/dogday.mp3" preload="auto"></audio>
         </div>
         `);
-        $img1 = $("<img/>", {
+        const $img1 = $("<img/>", {
             "class":"head1",
             src:"./img/SmilingCrittersLogoCharacters.png",
             alt:"smilingTitle"
         });
         $img1.on("click", () => $(".audio1")[0].play());
-        $img2 = $("<img/>", {
+        const $img2 = $("<img/>", {
             src:"./img/wordleTitle.png",
             alt:"wordleTitle"
         });
@@ -303,17 +303,17 @@ const wordle = (function () {
     }
 
     const divsTablero = (main) => {
-        $main = main;
+        const $main = main;
 
         $.each(Array(6), function (i) {
-            $row = $("<div/>", {
+            const $row = $("<div/>", {
                 "class": "row"
             });
 
             if (i === 0) $row.addClass("actual");
 
             $.each(Array(5), function () {
-                $cell = $("<div/>", {
+                const $cell = $("<div/>", {
                     "class": "cell",
                     "data-letter": ""
                 });
@@ -325,12 +325,12 @@ const wordle = (function () {
 
     const divsTeclado = (aside) => {
         
-        $aside = aside;
+        const $aside = aside;
 
         $.each(teclas, function (i) {
-            $keyRow = $("<div/>", {"class": "keyRow"});
+            const $keyRow = $("<div/>", {"class": "keyRow"});
             $.each(Array(teclas[i].length), function (j) {
-                $key = $("<div/>", {"class": "key"});
+                const $key = $("<div/>", {"class": "key"});
                 $key.text(teclas[i][j]);
                 $keyRow.append($key);
             });
@@ -341,29 +341,29 @@ const wordle = (function () {
     }
 
     const cuerpo = () => {
-        $content = $("<div class=\"content\"></div>");
-        $img1 = $("<img/>", {
+        const $content = $("<div class=\"content\"></div>");
+        const $img1 = $("<img/>", {
             "class":"img1",
             src:"./img/Hoppy_Hopscotch's_second_cutout_artwork_pose.png",
             alt:"hoppy1"
         });
         $img1.on("click", () => playAudio(".audio5"));
-        $img2 = $("<img/>", {
+        const $img2 = $("<img/>", {
             "class":"img2",
             src:"./img/KickinChicken's_second_cutout_artwork_pose.png",
             alt:"kickin1"
         });
         $img2.on("click", () => playAudio(".audio4"));
-        $img3 = $("<img/>", {
+        const $img3 = $("<img/>", {
             "class":"img3",
             src:"./img/dogday.png",
             alt:"dogday1"
         });
         $img3.on("click", () => playAudio(".audio6"));
-        $victory = $("<div class=\"theEnd\"></div>")
-        $main = $("<main></main>");
+        const $victory = $("<div class=\"theEnd\"></div>")
+        const $main = $("<main></main>");
         divsTablero($main);
-        $aside = $("<aside></aside>");
+        const $aside = $("<aside></aside>");
         divsTeclado($aside);
         $content.append($victory).append($img1).append($img2).append($img3).append($main).append($aside);
         $("body").append($content);
