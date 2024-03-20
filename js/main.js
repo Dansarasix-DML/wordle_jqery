@@ -158,8 +158,8 @@ const wordle = (function () {
             $victory.css("display", "flex");
 
             behaviourVictory();
-            $(".keyboard").off("click", clickLetra);
-            $(document).off("keydown", letraPresionada);
+            $("aside").off();
+            $(document).off();
             playAudio(".audio2");
 
         } else if (!$(".actual").next().length) {
@@ -180,8 +180,8 @@ const wordle = (function () {
             $victory.css("display", "flex");
 
             behaviourVictory();
-            $(".keyboard").off("click", clickLetra);
-            $(document).off("keydown", letraPresionada);
+            $("aside").off();
+            $(document).off();
             playAudio(".audio3");
         } else {
             $(".actual").next().addClass("actual").siblings(".row").removeClass("actual");
