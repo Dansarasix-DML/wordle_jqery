@@ -191,14 +191,9 @@ const wordle = (function () {
     const comprobarPalabra = function () {
         const $cells = $(".actual [data-letter]");
         const $keys = $(".key");
-        const intento = [];
 
         if ($cells.toArray().every(cell => !!$(cell).attr("data-letter"))) {
-            $cells.each(function() {
-                intento.push($(this).text());
-            });
-
-            const result = wordle.comprobar(intento.join(""));
+            const result = wordle.comprobar($cells.text());
 
             // console.log(result);
 
