@@ -216,12 +216,12 @@ const wordle = (function () {
 
                         case "yellow":
                             if (!key.hasClass("keyYellow")) {
-                                key.removeClass("keyGreen keyNone").addClass("key keyYellow");
+                                if (!key.hasClass("keyGreen")) key.removeClass("keyNone").addClass("key keyYellow");
                             }
                             break;
                     
                         default:
-                            key.removeClass("keyGreen keyYellow").addClass("key keyNone");
+                            if (!key.hasClass("keyGreen")) key.addClass("key keyNone");
                             break;
                     }
                 }
