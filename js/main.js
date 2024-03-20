@@ -207,14 +207,22 @@ const wordle = (function () {
                     return $(this).text() === $($cells[i]).text();
                 }).first();
                 if (key.length) {
-                    if (result[i] === "green") {
-                        key.removeClass().addClass("key keyGreen");
-                    } else if (!key.hasClass("keyGreen")) {
-                        if (result[i] === "yellow") {
-                            key.removeClass().addClass("key keyYellow");
-                        } else if (!key.hasClass("keyYellow")) {
-                            key.removeClass().addClass("key keyNone");
-                        }
+                    switch (result[i]) {
+                        case "green":
+                            if (!key.hasClass("keyGreen")) {
+                                key.removeClass("keyYellow keyNone").addClass("key keyGreen");
+                            }
+                            break;
+
+                        case "yellow":
+                            if (!key.hasClass("keyYellow")) {
+                                key.removeClass("keyGreen keyNone").addClass("key keyYellow");
+                            }
+                            break;
+                    
+                        default:
+                            key.removeClass("keyGreen keyYellow").addClass("key keyNone");
+                            break;
                     }
                 }
             });
